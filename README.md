@@ -6,8 +6,7 @@ Code, Codex, Hermes Agent, and OpenClaw with the thin manifests next to it.
 
 The skills drive the [`appcues` CLI](https://github.com/appcues/cli) when a
 shell and the binary are available, and fall back to the Appcues MCP server
-or the API when they are not. Install the CLI first if your agent has a
-shell; see the cli repo for instructions.
+or the API when they are not.
 
 ## The skills
 
@@ -26,66 +25,14 @@ The authoring contract every skill follows is in [`skills/README.md`](skills/REA
 
 ## Install
 
-### Claude Code
+The skills need the [`appcues` CLI](https://github.com/appcues/cli) and an
+Appcues API key on the machine the agent runs on. The full procedure, from
+runtime install to a first check, is in [docs/install.md](docs/install.md).
+The skills-only step per runtime:
 
-The repo is its own one-plugin marketplace. Send these as two separate prompts:
-
-```
-/plugin marketplace add appcues/skills
-```
-
-```
-/plugin install appcues-skills@appcues
-```
-
-Pull new skill versions with `/plugin marketplace update appcues`.
-
-### Codex
-
-```bash
-codex plugin marketplace add appcues/skills
-```
-
-Then run `codex`, open `/plugins`, and install **Appcues** from the
-`appcues` marketplace. Start a new session; skills are invoked with `$`,
-for example `$weekly-performance-digest`.
-
-### Hermes Agent
-
-Two routes from the same repo.
-
-As a plugin, all eight skills at once:
-
-```bash
-hermes plugins install appcues/skills
-```
-
-The installer asks whether to enable the plugin; answer yes, or run
-`hermes plugins enable appcues` later. After installing or reinstalling,
-quit and reopen the Hermes desktop app (Cmd+Q, then relaunch): the app's
-own backend loads plugins once per process, and `hermes gateway restart`
-does not restart it.
-
-Plugin skills are namespaced `appcues:<skill-name>` and reach the agent
-through its `skills_list` tool, plus a note on the first turn of each
-session listing them. Hermes does not show them in `hermes skills list`,
-the dashboard Skills tab, or the system prompt index.
-
-As a tap, one skill at a time, which does show up everywhere:
-
-```bash
-hermes skills tap add appcues/skills
-hermes skills install appcues/skills/weekly-performance-digest
-```
-
-### OpenClaw
-
-OpenClaw installs the repo as a plugin bundle and loads `skills/` as a skill root:
-
-```bash
-openclaw plugins install git:github.com/appcues/skills
-openclaw gateway restart
-```
-
-Verify with `openclaw skills list`. For a local checkout, add its `skills/`
-path to `skills.load.extraDirs` in `openclaw.json` instead.
+| Runtime | Command |
+|---|---|
+| Claude Code | `/plugin marketplace add appcues/skills`, then `/plugin install appcues-skills@appcues` |
+| Codex | `codex plugin marketplace add appcues/skills`, then install from `/plugins` |
+| Hermes Agent | `hermes plugins install appcues/skills`, then `hermes gateway restart` and relaunch the desktop app |
+| OpenClaw | `openclaw plugins install git:github.com/appcues/skills`, then `openclaw gateway restart` |
