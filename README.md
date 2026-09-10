@@ -58,11 +58,17 @@ As a plugin, all eight skills at once:
 
 ```bash
 hermes plugins install appcues/skills
-hermes plugins enable appcues
 ```
 
-Plugin skills are namespaced and available to the agent through its
-`skills_list` tool, but Hermes does not show them in `hermes skills list`,
+The installer asks whether to enable the plugin; answer yes, or run
+`hermes plugins enable appcues` later. After installing or reinstalling,
+quit and reopen the Hermes desktop app (Cmd+Q, then relaunch): the app's
+own backend loads plugins once per process, and `hermes gateway restart`
+does not restart it.
+
+Plugin skills are namespaced `appcues:<skill-name>` and reach the agent
+through its `skills_list` tool, plus a note on the first turn of each
+session listing them. Hermes does not show them in `hermes skills list`,
 the dashboard Skills tab, or the system prompt index.
 
 As a tap, one skill at a time, which does show up everywhere:
