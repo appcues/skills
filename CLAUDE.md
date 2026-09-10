@@ -20,6 +20,8 @@ plugin.json                       Agent Plugins v1 manifest: Hermes, Codex (port
 plugin.yaml + __init__.py         Hermes native plugin: registers skills/ as appcues:<name>, first-turn catalog hook
 tests/test_hermes_plugin.py       stub-ctx check for the plugin; needs PyYAML, see Verification
 AGENTS.md                         pointer to this file for other agents
+docs/install.md                   the one end-to-end install guide (runtime, CLI, key, skills, first check)
+docs/*.md                         packaging research: cross-runtime portability, skill ecosystem survey
 ```
 
 Every manifest points at the same `skills/` directory. Nothing runtime specific lives inside a skill.
@@ -42,7 +44,7 @@ The Codex marketplace entry uses a `url` source pointing at the repo's own git U
 
 ## Constraints on what may live in the repo
 
-Hermes runs a security scan over every file at the install root before installing, and a caution verdict blocks community installs. Docs, CI workflows, and shell scripts are the usual triggers. Keep the top level to manifests, the Hermes plugin entry point, README, AGENTS.md, and this file; do not add workflows, scripts, or prose that reads like install instructions piping remote content into a shell. Run the scan after any change outside `skills/`.
+Hermes runs a security scan over every file at the install root before installing, and a caution verdict blocks community installs. Docs, CI workflows, and shell scripts are the usual triggers. Keep the top level to manifests, the Hermes plugin entry point, README, AGENTS.md, docs/, and this file; do not add workflows, scripts, or prose that reads like install instructions piping remote content into a shell. Run the scan after any change outside `skills/`.
 
 Each `SKILL.md` frontmatter `name` must equal its folder name and its `description` must stay under 1024 characters, or Hermes rejects the package.
 
