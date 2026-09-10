@@ -1,0 +1,6 @@
+# Hermes Agent native plugin manifest. Hermes prefers this over plugin.json,
+# which stays for Codex. __init__.py registers every skill under skills/ as
+# appcues:<skill-name>.
+name: appcues
+version: 0.2.1
+description: "Appcues skills for agent runtimes, backed by the appcues CLI: account inventory, analytics queries, weekly performance digest, experience errors, NPS sentiment, step drop-off, dashboard digest, campaign report"
