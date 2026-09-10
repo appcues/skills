@@ -83,16 +83,3 @@ openclaw gateway restart
 
 Verify with `openclaw skills list`. For a local checkout, add its `skills/`
 path to `skills.load.extraDirs` in `openclaw.json` instead.
-
-## Layout
-
-```
-skills/<name>/SKILL.md          the skills; references/ where a skill needs sample payloads
-plugin.json                     Agent Plugins v1 manifest: Hermes, Codex (portable), OpenClaw bundle
-.claude-plugin/                 Claude Code marketplace + plugin manifest
-.codex-plugin/plugin.json       Codex presentation metadata (compatibility overlay)
-.agents/plugins/marketplace.json  Codex marketplace
-```
-
-Every manifest points at the same `skills/` directory. Nothing runtime
-specific lives inside a skill.
