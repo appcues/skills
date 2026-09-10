@@ -1,0 +1,25 @@
+{
+  "metrics": [
+    "events",
+    "users"
+  ],
+  "dimensions": [
+    "experience_id",
+    "step_id",
+    "step_error_message"
+  ],
+  "conditions": [
+    [
+      "name",
+      "==",
+      "appcues:v2:step_error"
+    ]
+  ],
+  "order_by": [
+    [
+      "events",
+      "desc"
+    ]
+  ],
+  "timezone": "UTC"
+}

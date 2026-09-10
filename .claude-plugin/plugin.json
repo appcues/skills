@@ -1,0 +1,6 @@
+{
+  "name": "appcues-skills",
+  "description": "Appcues skills for agent runtimes, backed by the appcues CLI",
+  "version": "0.1.0",
+  "author": { "name": "Appcues", "url": "https://github.com/appcues" }
+}

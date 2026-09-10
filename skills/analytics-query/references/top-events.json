@@ -1,0 +1,9 @@
+{
+  "metrics": ["events", "users"],
+  "dimensions": ["event"],
+  "order_by": [["events", "desc"]],
+  "start_time": "2026-05-29",
+  "end_time": "2026-08-26",
+  "timezone": "UTC",
+  "limit": 20
+}

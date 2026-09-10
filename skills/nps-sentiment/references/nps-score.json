@@ -1,0 +1,21 @@
+{
+  "metrics": [
+    "nps_computed_score",
+    "nps_promoters",
+    "nps_neutrals",
+    "nps_detractors"
+  ],
+  "dimensions": [
+    "day"
+  ],
+  "conditions": [
+    [
+      "flow_id",
+      "==",
+      "<NPS_FLOW_ID>"
+    ]
+  ],
+  "start_time": "<RFC 3339, 30 days before end>",
+  "end_time": "<RFC 3339, now>",
+  "timezone": "UTC"
+}

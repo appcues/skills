@@ -1,0 +1,8 @@
+{
+  "metrics": ["users", "events"],
+  "dimensions": ["day"],
+  "conditions": [["event", "==", "appcues:flow_started"]],
+  "start_time": "2026-07-27",
+  "end_time": "2026-08-26",
+  "timezone": "UTC"
+}

@@ -1,0 +1,8 @@
+{
+  "columns": ["timestamp", "user_id", "name"],
+  "conditions": [["name", "==", "appcues:session_started"]],
+  "order_by": [["timestamp", "desc"]],
+  "start_time": "2026-07-27",
+  "end_time": "2026-08-26",
+  "timezone": "UTC"
+}

@@ -1,0 +1,24 @@
+{
+  "name": "appcues",
+  "version": "0.2.1",
+  "description": "Appcues skills for agent runtimes, backed by the appcues CLI: account inventory, analytics queries, weekly performance digest, experience errors, NPS sentiment, step drop-off, dashboard digest, campaign report",
+  "author": { "name": "Appcues", "url": "https://github.com/appcues" },
+  "homepage": "https://github.com/appcues/skills",
+  "repository": "https://github.com/appcues/skills",
+  "keywords": ["appcues", "analytics", "product-adoption", "nps", "flows"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Appcues",
+    "shortDescription": "Report on Appcues flows, analytics, errors, NPS, dashboards, and campaigns",
+    "longDescription": "Eight skills that answer questions about an Appcues account: what is in it, how flows performed this week, where users drop off in a flow, which experiences are erroring, what NPS respondents are saying, what a dashboard shows, and how a campaign is doing.",
+    "developerName": "Appcues",
+    "category": "Data & Analytics",
+    "capabilities": ["Read"],
+    "websiteURL": "https://www.appcues.com",
+    "defaultPrompt": [
+      "Give me an inventory of the Appcues account.",
+      "How did our Appcues flows perform this week?",
+      "Which Appcues flows are erroring today?"
+    ]
+  }
+}

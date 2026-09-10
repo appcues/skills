@@ -1,0 +1,34 @@
+{
+  "columns": [
+    "timestamp",
+    "user_id",
+    "name",
+    "score",
+    "feedback"
+  ],
+  "conditions": [
+    [
+      "flow_id",
+      "==",
+      "<NPS_FLOW_ID>"
+    ],
+    [
+      "name",
+      "in",
+      [
+        "appcues:nps_score",
+        "appcues:nps_feedback",
+        "appcues:nps_score_and_feedback"
+      ]
+    ]
+  ],
+  "order_by": [
+    [
+      "timestamp",
+      "desc"
+    ]
+  ],
+  "start_time": "<RFC 3339, 30 days before end>",
+  "end_time": "<RFC 3339, now>",
+  "timezone": "UTC"
+}

@@ -1,0 +1,11 @@
+{
+  "metrics": ["events", "users"],
+  "dimensions": ["step_id", "name"],
+  "conditions": [
+    ["flow_id", "==", "<FLOW_ID>"],
+    ["name", "in", ["appcues:flow_started", "appcues:step_started", "appcues:step_completed", "appcues:step_skipped", "appcues:step_error", "appcues:flow_completed"]]
+  ],
+  "start_time": "<RFC 3339, 7 days before end>",
+  "end_time": "<RFC 3339, now>",
+  "timezone": "UTC"
+}

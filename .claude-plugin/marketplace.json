@@ -1,0 +1,12 @@
+{
+  "name": "appcues",
+  "description": "Appcues skills for agent runtimes, backed by the appcues CLI",
+  "owner": { "name": "Appcues" },
+  "plugins": [
+    {
+      "name": "appcues-skills",
+      "source": "./",
+      "description": "Appcues skills: account inventory, analytics queries, weekly performance digest, experience errors, NPS sentiment, step drop-off, dashboard digest, campaign report"
+    }
+  ]
+}

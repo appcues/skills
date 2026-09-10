@@ -1,0 +1,7 @@
+{
+  "metrics": ["events", "users"],
+  "dimensions": ["flow_id", "step_id", "step_error_message"],
+  "conditions": [["name", "==", "appcues:step_error"]],
+  "order_by": [["events", "desc"]],
+  "timezone": "UTC"
+}

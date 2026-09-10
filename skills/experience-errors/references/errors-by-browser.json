@@ -1,0 +1,30 @@
+{
+  "metrics": [
+    "events",
+    "users"
+  ],
+  "dimensions": [
+    "flow_id",
+    "experience_id",
+    "user_agent_browser",
+    "platform"
+  ],
+  "conditions": [
+    [
+      "name",
+      "in",
+      [
+        "appcues:step_error",
+        "appcues:step_child_error",
+        "appcues:v2:step_error"
+      ]
+    ]
+  ],
+  "order_by": [
+    [
+      "events",
+      "desc"
+    ]
+  ],
+  "timezone": "UTC"
+}
