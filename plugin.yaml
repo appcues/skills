@@ -4,3 +4,6 @@
 name: appcues
 version: 0.2.1
 description: "Appcues skills for agent runtimes, backed by the appcues CLI: account inventory, analytics queries, weekly performance digest, experience errors, NPS sentiment, step drop-off, dashboard digest, campaign report"
+
+provides_hooks:
+  - pre_llm_call
