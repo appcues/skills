@@ -3,7 +3,7 @@
 # appcues:<skill-name>.
 name: appcues
 version: 0.2.1
-description: "Appcues skills for agent runtimes, backed by the appcues CLI: account inventory, analytics queries, weekly performance digest, experience errors, NPS sentiment, step drop-off, dashboard digest, campaign report"
+description: "Appcues skills for agent runtimes, backed by the appcues CLI: account inventory, analytics queries, weekly performance digest, experience errors, NPS sentiment, step drop-off, dashboard digest, campaign report, plus ad hoc appcues CLI operations"
 
 provides_hooks:
   - pre_llm_call

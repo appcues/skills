@@ -20,6 +20,7 @@ confirming this contract empirically).
 | `flow-step-dropoff/` | Step-by-step funnel of one flow: where users are lost, with skip and error counts |
 | `dashboard-digest/` | Narrates an existing Appcues dashboard card by card: what each chart shows, the numbers, and the change vs the previous window |
 | `campaign-report/` | One campaign end to end: objective, each tactic, its content with published state and engagement vs the previous period |
+| `appcues-cli/` | How to drive the `appcues` CLI for ad hoc tasks: status and profiles, listings, publish/unpublish, tool discovery and calls, analytics exports. The fallback when no report skill matches |
 
 ## Format: spec-pure
 
