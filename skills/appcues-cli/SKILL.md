@@ -30,13 +30,13 @@ tier: read the structured error and act on it.
 ## First: confirm the connection
 
 ```bash
-appcues status
+appcues status -o json
 ```
 
 Prints the account ID, the API host, and whether the credentials work.
 Run it before anything else when the user asks about setup, when the
 first real command fails with exit 3, or when it is unclear which
-account is active. `appcues profiles list` shows the saved profiles with
+account is active. `appcues profiles list -o json` shows the saved profiles with
 credentials truncated; `--profile <name>` or `APPCUES_PROFILE` selects
 one, `--account <id>` overrides the profile's account for one call.
 
