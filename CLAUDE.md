@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repo is
 
-Eight portable Agent Skills (`skills/<name>/SKILL.md`) for reporting on an Appcues account, plus thin per-runtime manifests at the root so one tree installs into Claude Code, Codex, Hermes Agent, and OpenClaw. The layout mirrors anthropics/skills: everything of substance lives in `skills/`, and every manifest points at that same directory. There is no build and no dependency install; one stdlib unittest for the Hermes plugin plus the checks below are the whole verification story.
+Nine portable Agent Skills (`skills/<name>/SKILL.md`): eight that report on an Appcues account plus `appcues-cli`, the operational fallback for ad hoc CLI tasks, plus thin per-runtime manifests at the root so one tree installs into Claude Code, Codex, Hermes Agent, and OpenClaw. The layout mirrors anthropics/skills: everything of substance lives in `skills/`, and every manifest points at that same directory. There is no build and no dependency install; one stdlib unittest for the Hermes plugin plus the checks below are the whole verification story.
 
 The skills themselves are authored against the contract in `skills/README.md` (spec-pure frontmatter, capability-not-transport access block, MUST-level output skeletons, no runtime-isms, no cross-references between skills). Read it before editing or adding a skill. The skills originated in appcues/cli and were moved here; that repo still holds the CLI the skills drive.
 
@@ -63,7 +63,7 @@ p = load_agent_plugin(Path('.').resolve(), Path(tempfile.mkdtemp())); print(sort
 hermes plugins validate .
 ```
 
-Expected: verdict `safe` and all eight skill names. The standing findings are low, informational `agent_config_ref` hits wherever this file or AGENTS.md is named; they do not affect the verdict, so do not chase them. Anything with another pattern id is new.
+Expected: verdict `safe` and all nine skill names. The standing findings are low, informational `agent_config_ref` hits wherever this file or AGENTS.md is named; they do not affect the verdict, so do not chase them. Anything with another pattern id is new.
 
 Claude Code and Codex:
 
