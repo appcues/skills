@@ -1,6 +1,6 @@
 # Cross-runtime skills & plugins research (OpenClaw, Hermes, Claude Code, ChatGPT/Codex)
 
-Research supporting ticket S1 (sc-91494, the skill contract). Researched 2026-08-20 from the official docs of each runtime; sources listed at the end.
+Research supporting the skill contract (skills/README.md). Researched 2026-08-20 from the official docs of each runtime; sources listed at the end.
 
 ## Headline
 
@@ -33,14 +33,14 @@ Portable core: directory + SKILL.md (YAML frontmatter + markdown body) + optiona
 
 Claude-Code-only features that must be avoided in portable skills: extra frontmatter (argument-hint, context: fork, hooks, paths, model, when_to_use, arguments, user-invocable, disable-model-invocation, disallowed-tools, effort, shell, agent, background) hard-errors on claude.ai/Skills-API upload; body features (!`command` injection, $ARGUMENTS/$N, ${CLAUDE_*} vars, @file refs) become literal text elsewhere. Hooks, subagents, and output styles are host features, not part of the format.
 
-The real portability cliff is the binary, not the format: ChatGPT skills run in OpenAI's cloud Code Interpreter container, and Codex sandboxes are network-off by default, so the `appcues` CLI won't be on PATH there. This independently confirms S1's requirement that every skill be completable through MCP (or raw API) alone, CLI preferred where a shell and binary exist.
+The real portability cliff is the binary, not the format: ChatGPT skills run in OpenAI's cloud Code Interpreter container, and Codex sandboxes are network-off by default, so the `appcues` CLI won't be on PATH there. This independently confirms the contract's requirement that every skill be completable through MCP (or raw API) alone, CLI preferred where a shell and binary exist.
 
 ## Recommended architecture for the Appcues skills
 
 Layers:
 
 - **L0, elementary tools**: the appcues CLI (peers: Appcues MCP server, raw API v2).
-- **L1, the contract**: skills/README.md (= ticket S1). Rules:
+- **L1, the contract**: skills/README.md. Rules:
   1. Spec-pure frontmatter; runtime-specific needs go under metadata.<runtime> (e.g. metadata.openclaw.requires.bins: [appcues]).
   2. Capability-not-transport, with a canonical access block authors copy: prefer CLI (branch on typed exit codes 0-5, one JSON error line on stderr, -o json, --dry-run), fall back to MCP tools, last resort raw API.
   3. The three tier requirements: MCP-completable, unattended-safe, interactive-pleasant.

@@ -2,9 +2,7 @@
 
 Set up an agent runtime, give it the `appcues` CLI, and install the skills. Steps 2 to 4 are the same for every runtime; steps 1 and 5 have a subsection per runtime. This guide is for using the skills, not writing them.
 
-**While the repos are private** you need a GitHub account with read access to `appcues/cli` and `appcues/skills`, signed in locally with `gh auth login`. The CLI download (step 2) and the skill installs (step 5) both pull from them. Once public, the CLI comes from Homebrew and the skills install without a token.
-
-**Your Appcues account needs MCP access enabled.** The CLI's `appcues tools` commands, and the skills that use them (NPS sentiment today), call the account tools service, which sits behind the same feature gate as the Appcues MCP server. Without it those commands return an authorization error even with a valid key. Ask Appcues support to enable MCP for the account if `appcues tools list` fails after step 4.
+**Your Appcues account needs MCP access enabled.** The CLI's `appcues tools` commands, and the skills that use them (NPS sentiment today), need MCP access on the account. Without it those commands return an authorization error even with a valid key. Ask Appcues support to enable MCP for the account if `appcues tools list` fails after step 4.
 
 Four things to know first:
 
@@ -28,9 +26,27 @@ Hermes has three front ends over one agent, so everything below applies to all o
 
 ## 2. Install the `appcues` CLI
 
-Follow the [Install section of the appcues/cli README](https://github.com/appcues/cli#install): download the release archive for your Mac, put the binary in `~/.local/bin`, and confirm with `appcues --version`. That README also covers the Gatekeeper quarantine flag on browser downloads and the PATH export.
+With Homebrew on macOS or Linux:
 
-`~/.local/bin` must be on the PATH of whatever shell the runtime spawns; see the first-check notes in step 6 if a runtime cannot find the binary.
+```bash
+brew install appcues/tap/appcues
+appcues --version
+```
+
+Upgrade later with `brew upgrade appcues`.
+
+**Without Homebrew**, download the tarball for your platform from the [appcues/cli releases page](https://github.com/appcues/cli/releases) (`aarch64-apple-darwin`, `x86_64-apple-darwin`, `aarch64-unknown-linux-gnu`, or `x86_64-unknown-linux-gnu`), extract the binary, and put it on your PATH:
+
+```bash
+gh release download -R appcues/cli -p 'appcues-aarch64-apple-darwin.tar.xz'
+tar -xf appcues-aarch64-apple-darwin.tar.xz --strip-components=1 '*/appcues'
+mkdir -p ~/.local/bin && install -m 755 appcues ~/.local/bin/
+appcues --version
+```
+
+The macOS binary is unsigned, so Gatekeeper quarantines browser downloads; the [appcues/cli README](https://github.com/appcues/cli#install) covers clearing that flag and building from source.
+
+Whichever route you take, the binary's directory must be on the PATH of whatever shell the runtime spawns; see the first-check notes in step 6 if a runtime cannot find it.
 
 ## 3. Create Appcues API credentials
 
@@ -106,4 +122,4 @@ Verify with `openclaw skills list`. For a local checkout, add its `skills/` path
 
 Start the runtime and ask: `Run appcues status and tell me what it says.` The agent should run the command and report the same `credentials OK` line from step 4. Then try a skill: `Give me an inventory of the account.`
 
-If the agent reports `appcues: command not found`, its shell did not inherit your PATH. Confirm `~/.local/bin` is on the PATH in a fresh terminal, then start a new session. The Hermes desktop app launched from the Dock gets only the login-shell PATH, not the interactive one; either start it with `hermes desktop` from a terminal, or add `~/.local/bin` to the PATH in your login-shell profile as well. Claude Code and Codex inherit the shell they were launched from.
+If the agent reports `appcues: command not found`, its shell did not inherit your PATH. Confirm `which appcues` works in a fresh terminal, then start a new session. The Hermes desktop app launched from the Dock gets only the login-shell PATH, not the interactive one; either start it with `hermes desktop` from a terminal, or add the binary's directory (Homebrew's `bin`, or `~/.local/bin` for a tarball install) to the PATH in your login-shell profile as well. Claude Code and Codex inherit the shell they were launched from.
