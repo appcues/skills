@@ -128,8 +128,9 @@ keep the most recent message per experience, or `no recent message`
 when it says no issues were found. `list_issue_spikes` names
 experiences whose error rate jumped; mark them in the scoreboard. If
 either tool fails with exit 5 and a body saying account tools are not
-available, or exit 3 because there is no tools service, fill those
-columns with `account tools unavailable` and continue.
+available, or exit 3 with `"type":"config"` and a message naming a
+missing tools endpoint, fill those columns with `account tools
+unavailable` and continue. An `auth` error stops the run.
 
 ### Step 4: source verdict, when a source tree is present
 
