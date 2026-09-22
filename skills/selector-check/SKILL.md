@@ -21,7 +21,7 @@ it never proves the tooltip will render. Say so in every report.
 
 All optional, taken from the request; never ask for them.
 
-- **Domain**: the host the app deploys to (e.g. `app.example.com`).
+- **Domain**: the host the app deploys to.
   With a domain, only experiences whose domain targeting includes it
   are audited. Without one, every published selector-bearing
   experience is audited and the notes say so.
@@ -46,8 +46,8 @@ Use whichever Appcues access you have, in this order:
 
 Pick the first tier available and use it exclusively for the whole
 task: this is an availability ladder, not a troubleshooting ladder. A
-failed or odd-looking call is never a reason to drop to a lower tier;
-read the structured error and act on it. Local parsing (python3, jq,
+failed call is never a reason to drop a tier; read the structured
+error and act on it. Local parsing (python3, jq,
 grep) is fine.
 
 Credentials are ambient (the environment, or the CLI's own config,
@@ -86,7 +86,7 @@ to this skill's directory). In short:
 |---|---|---|
 | legacy flow | `flow.steps.<step>.hotspots.<hotspot>.selector` on steps whose `stepType` is `hotspot-group` or `tooltip-group` | `rule.conditions` (`url` and `domains` clauses) |
 | Flows 2.0 | `experience.steps[].traits[]` where `type` is `@appcues/overlay`: `config.target.selector`, on steps whose `type` is `tooltip` | `rule.conditions` |
-| pin | `experience.steps[].traits[]` where `type` is `@appcues/inline`: `config.target.selector` | `rule.conditions` |
+| pin | `experience.steps[].traits[]` where `type` is `@appcues/inline`: `config.target.selector`; identical values across a pin's steps count once | `rule.conditions` |
 
 Ignore **internal selectors**: Appcues' own DOM, never the customer's.
 A selector is internal when it is `flow-root`, `#flow-root`, or `#`
@@ -129,8 +129,7 @@ when it says no issues were found. `list_issue_spikes` names
 experiences whose error rate jumped; mark them in the scoreboard. If
 either tool fails with exit 5 and a body saying account tools are not
 available, or exit 3 because there is no tools service, fill those
-columns with `account tools unavailable` and continue; decide that
-once, up front.
+columns with `account tools unavailable` and continue.
 
 ### Step 4: source verdict, when a source tree is present
 
@@ -143,9 +142,9 @@ labels, hrefs, `data-testid` values), skipping build output,
 
 | verdict | meaning |
 |---|---|
-| `found` | every identifying part appears in source on an element that plausibly renders on the page rule's URL, and the selector uses no brittle construct |
+| `found` | every identifying part appears in source on an element that plausibly renders on the page rule's URL, with combinators (`#a .b`) traced to real nesting, and the selector uses no brittle construct |
 | `found but brittle` | the parts appear, but the selector depends on a construct in the "Do not use" list |
-| `not found` | at least one identifying part appears nowhere in source (renamed, removed, or generated) |
+| `not found` | an identifying part appears nowhere in source, or the parts exist but their nesting cannot be traced |
 | `no source available` | no source tree, or the tree is not a web app |
 
 The brittle constructs, fixed:
@@ -190,7 +189,7 @@ not invent attributes.
 | 1 | unexpected failure | stop, report the JSON `message` |
 | 2 | usage error | fix the invocation, retry once |
 | 3 | missing/bad credentials | stop, report exactly what is needed |
-| 4 | API rejected the request (4xx) | fix the field named in `body`, retry once; a 404 on one experience drops it with a note |
+| 4 | API rejected the request (4xx) | stop, report status and message; a 404 on one experience drops it with a note |
 | 5 | rate limited / 5xx (already retried) | stop, report |
 
 ## Report format (MUST)
@@ -268,4 +267,3 @@ Seen counts SDK start attempts, Errors counts selector misses, and one user can 
   error quoted.
 - Never claim a selector works. The strongest positive verdict is
   `found`, and the header line says the check is static.
-- Stay on one access tier for the whole task.
