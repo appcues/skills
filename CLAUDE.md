@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repo is
 
-Nine portable Agent Skills (`skills/<name>/SKILL.md`): eight that report on an Appcues account plus `appcues-cli`, the operational fallback for ad hoc CLI tasks, plus thin per-runtime manifests at the root so one tree installs into Claude Code, Codex, Hermes Agent, and OpenClaw. The layout mirrors anthropics/skills: everything of substance lives in `skills/`, and every manifest points at that same directory. There is no build and no dependency install; one stdlib unittest for the Hermes plugin plus the checks below are the whole verification story.
+Ten portable Agent Skills (`skills/<name>/SKILL.md`): nine that report on an Appcues account plus `appcues-cli`, the operational fallback for ad hoc CLI tasks, plus thin per-runtime manifests at the root so one tree installs into Claude Code, Codex, Hermes Agent, and OpenClaw. The layout mirrors anthropics/skills: everything of substance lives in `skills/`, and every manifest points at that same directory. There is no build and no dependency install; one stdlib unittest for the Hermes plugin plus the checks below are the whole verification story.
 
 The skills themselves are authored against the contract in `skills/README.md` (spec-pure frontmatter, capability-not-transport access block, MUST-level output skeletons, no runtime-isms, no cross-references between skills). Read it before editing or adding a skill. The skills originated in appcues/cli and were moved here; that repo still holds the CLI the skills drive.
 
@@ -38,7 +38,7 @@ Every manifest points at the same `skills/` directory. Nothing runtime specific 
 
 Hermes taps (`hermes skills tap add appcues/skills`) and OpenClaw's `extraDirs` route need no manifest at all; they work off the `skills/` layout.
 
-Versions are duplicated: `plugin.yaml`, `plugin.json`, and `.codex-plugin/plugin.json` carry the plugin version, `.claude-plugin/plugin.json` has its own. Bump them together.
+Versions are duplicated: `plugin.yaml`, `plugin.json`, `.codex-plugin/plugin.json`, and `.claude-plugin/plugin.json` all carry the same plugin version. Bump all four together; adding a skill bumps the patch number only.
 
 The Codex marketplace entry uses a `url` source pointing at the repo's own git URL, not a local `./` path. Codex silently skips a local `./` entry when the plugin is the marketplace root, so that is not a mistake to fix.
 
@@ -63,7 +63,7 @@ p = load_agent_plugin(Path('.').resolve(), Path(tempfile.mkdtemp())); print(sort
 hermes plugins validate .
 ```
 
-Expected: verdict `safe` and all nine skill names. The standing findings are low, informational `agent_config_ref` hits wherever this file or AGENTS.md is named; they do not affect the verdict, so do not chase them. Anything with another pattern id is new.
+Expected: verdict `safe` and all ten skill names. The standing findings are low, informational `agent_config_ref` hits wherever this file or AGENTS.md is named; they do not affect the verdict, so do not chase them. Anything with another pattern id is new.
 
 Claude Code and Codex:
 
