@@ -38,7 +38,7 @@ Every manifest points at the same `skills/` directory. Nothing runtime specific 
 
 Hermes taps (`hermes skills tap add appcues/skills`) and OpenClaw's `extraDirs` route need no manifest at all; they work off the `skills/` layout.
 
-Versions are duplicated: `plugin.yaml`, `plugin.json`, and `.codex-plugin/plugin.json` carry the plugin version, `.claude-plugin/plugin.json` has its own. Bump them together.
+Versions are duplicated: `plugin.yaml`, `plugin.json`, `.codex-plugin/plugin.json`, and `.claude-plugin/plugin.json` all carry the same plugin version. Bump all four together; adding a skill bumps the patch number only.
 
 The Codex marketplace entry uses a `url` source pointing at the repo's own git URL, not a local `./` path. Codex silently skips a local `./` entry when the plugin is the marketplace root, so that is not a mistake to fix.
 
