@@ -20,6 +20,7 @@ or the API when they are not.
 | `flow-step-dropoff` | Step-by-step funnel of one flow: where users are lost, with skip and error counts |
 | `dashboard-digest` | Narrates an existing Appcues dashboard card by card: what each chart shows, the numbers, the change vs the previous window |
 | `campaign-report` | One campaign end to end: objective, each tactic, its content with published state and engagement vs the previous period |
+| `selector-check` | Every published tooltip and pin selector: live miss rate, whether the current source still matches it, and a stable replacement; for a pre-deploy check from inside the web app's repo |
 
 The authoring contract every skill follows is in [`skills/README.md`](skills/README.md).
 

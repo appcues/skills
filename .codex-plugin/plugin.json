@@ -1,7 +1,7 @@
 {
   "name": "appcues",
-  "version": "0.2.1",
-  "description": "Appcues skills for agent runtimes, backed by the appcues CLI: account inventory, analytics queries, weekly performance digest, experience errors, NPS sentiment, step drop-off, dashboard digest, campaign report, plus ad hoc appcues CLI operations",
+  "version": "0.2.2",
+  "description": "Appcues skills for agent runtimes, backed by the appcues CLI: account inventory, analytics queries, weekly performance digest, experience errors, NPS sentiment, step drop-off, dashboard digest, campaign report, selector check, plus ad hoc appcues CLI operations",
   "author": { "name": "Appcues", "url": "https://github.com/appcues" },
   "homepage": "https://github.com/appcues/skills",
   "repository": "https://github.com/appcues/skills",
@@ -10,7 +10,7 @@
   "interface": {
     "displayName": "Appcues",
     "shortDescription": "Report on Appcues flows, analytics, errors, NPS, dashboards, and campaigns",
-    "longDescription": "Nine skills for an Appcues account: eight answer questions about it and one drives the appcues CLI for ad hoc tasks. The reports cover what is in it, how flows performed this week, where users drop off in a flow, which experiences are erroring, what NPS respondents are saying, what a dashboard shows, and how a campaign is doing.",
+    "longDescription": "Ten skills for an Appcues account: nine answer questions about it and one drives the appcues CLI for ad hoc tasks. The reports cover what is in it, how flows performed this week, where users drop off in a flow, which experiences are erroring, what NPS respondents are saying, what a dashboard shows, how a campaign is doing, and whether published tooltip selectors still match the app's source.",
     "developerName": "Appcues",
     "category": "Data & Analytics",
     "capabilities": ["Read"],
